@@ -10,7 +10,7 @@
   <meta name="if:Archive Link" content="1" />
   <meta name="text:Swiftype Search Key" content="" />
   <meta name="text:Twitter Username" content="" />
-  <meta name="text:App dot net Username" content="" />
+  <meta name="text:GitHub Username" content="" />
   <meta name="text:Nickname" content="" />
   <meta name="text:Google Analytics ID" content="" />
   <meta name='text:Disqus Shortname' content="" />
@@ -67,6 +67,7 @@
     {
       border-left-color: {color:Theme Color};
     }
+    article p img.bleed { margin-left: 0px; min-width: 0px; max-width: none; }
   </style>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script src="http://static.tumblr.com/rb82j8l/gCMmoy39n/theme.js"></script>
@@ -92,17 +93,17 @@
   <h2><a href="/">{Title}</a></h2>
   <h3><p>{Description}</p></h3>
   <ul id="user_nav">
+    {block:IfTwitterUsername}
+    <li class="link twitter"><a href="http://twitter.com/{text:Twitter Username}" target="_blank">@{text:Twitter Username}</a></li>
+    {/block:IfTwitterUsername}
+    {block:IfGitHubUsername}
+    <li class="link github"><a href="https://github.com/{text:GitHub Username}" target="_blank">github</a></li>
+    {/block:IfGitHubUsername}
     {block:HasPages}
       {block:Pages}
     <li class="website"><a href="{URL}">{Label}</a></li>
       {/block:Pages}
     {/block:HasPages}
-    {block:IfTwitterUsername}
-    <li class="link twitter icons"><a href="http://twitter.com/{text:Twitter Username}">@{text:Twitter Username}</a></li>
-    {/block:IfTwitterUsername}
-    {block:IfAppdotnetUsername}
-    <li class="link appdotnet icons"><a href="https://alpha.app.net/{text:App[dot]net Username}" rel="me">@{text:App dot net Username}</a></li>
-    {/block:IfAppdotnetUsername}
     {block:AskEnabled}
     <li class="link email"><a href="/ask">{AskLabel}</a></li>
     {/block:AskEnabled}
@@ -114,7 +115,7 @@
     {block:IfArchiveLink}
   </ul>
   <aside id="svbtle_linkback">
-    <a href="https://github.com/EricTendian/svbtle-tumblr"><span class="logo_square"><span class="logo_circle">&nbsp;</span></span>&nbsp;<span class="svbtle">Svbtle</span></a>
+    <a href="http://jonny.li/"><span class="logo_square"><span class="logo_circle">&nbsp;</span></span>&nbsp;<span class="svbtle">Svbtle</span></a>
   </aside>
 </header>
 {block:IndexPage}
@@ -169,9 +170,9 @@
     div.swiftype div.st-result-listing .st-results div.st-result .st-result-text .st-metadata .st-snippet {
         font-size: 13px;
     }
+    img.bleed { margin-left: 0px; min-width: 0px; }
     </style>
     {/block:IfSwiftypeSearchKey}
-    {block:IndexPage}
     <time datetime=""></time>
     <script>
     var objToday = new Date();
@@ -183,11 +184,7 @@
       $("time").text(date);
     });
     </script>
-    {/block:IndexPage}
 {block:Posts}
-    {block:PermalinkPage}
-    <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{Month} {DayOfMonth}, {Year}</time>
-    {/block:PermalinkPage}
   </header>
   
   <article id="eid{PostID}" class="post">
