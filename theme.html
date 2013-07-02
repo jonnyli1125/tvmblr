@@ -8,6 +8,7 @@
   <meta name="color:Theme Color" content="" />
   <meta name="if:RSS Feed" content="1" />
   <meta name="if:Archive Link" content="1" />
+  <meta name="if:Show Ask Link" content="1" />
   <meta name="text:Swiftype Search Key" content="" />
   <meta name="text:Twitter Username" content="" />
   <meta name="text:GitHub Username" content="" />
@@ -108,7 +109,9 @@
       {/block:Pages}
     {/block:HasPages}
     {block:AskEnabled}
+    {block:IfShowAskLink}
     <li class="link email"><a href="/ask">{AskLabel}</a></li>
+    {/block:IfShowAskLink}
     {/block:AskEnabled}
     {block:IfRssFeed}
     <li class="link feed"><a href="{RSS}">feed</a></li>
