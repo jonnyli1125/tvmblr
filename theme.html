@@ -15,6 +15,80 @@
   <meta name="text:Nickname" content="" />
   <meta name="text:Google Analytics ID" content="" />
   <meta name='text:Disqus Shortname' content="" />
+  
+  {block:IfTwitterUsername}
+  {block:PermalinkPage}
+
+  <meta name="twitter:url" content="{Permalink}"/>
+  <meta name="twitter:site" content="@jonnylii">
+  <meta name="twitter:creator" content="@{text:Twitter Username}">
+
+    {block:Posts}
+      {block:Text}
+        <meta name="twitter:card" content="summary">
+        {block:Title}<meta name="twitter:title" content="{PlaintextTitle}"/>{/block:Title}
+        <meta name="twitter:description" content="{PlaintextBody}"/>
+        <meta name="twitter:image" content="{PortraitURL-64}"/>
+      {/block:Text}
+
+      {block:Photo}
+        <meta name="twitter:card" content="photo">
+        <meta name="twitter:image" content="{PhotoURL-500}"/>
+        {block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+      {/block:Photo}
+
+      {block:Photoset}
+        <meta name="twitter:card" content="photo">
+        {block:Photos}<meta name="twitter:image" content="{PhotoURL-500}"/>{/block:Photos}
+        {block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+      {/block:Photoset}
+
+      {block:Quote}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{PlaintextQuote}"/>
+        <meta name="twitter:description" content="{PlaintextSource}"/>
+        <meta name="twitter:image" content="{PortraitURL-64}"/>
+      {/block:Quote}
+
+      {block:Link}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{PlaintextName}"/>
+        <meta name="twitter:description" content="{PlaintextDescription}"/>
+        <meta name="twitter:image" content="{PortraitURL-64}"/>
+      {/block:Link}
+
+      {block:Chat}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{PlaintextTitle}"/>
+        <meta name="twitter:description" content="{block:Lines}{block:Label}{Label}: {/block:Label}{Line} &bull; {/block:Lines}"/>
+        <meta name="twitter:image" content="{PortraitURL-64}"/>
+      {/block:Chat}
+
+      {block:Audio}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{block:Artist}{Artist} - {/block:Artist}{block:TrackName}{TrackName}{/block:TrackName}"/>
+        <meta name="twitter:description" content="{PlaintextCaption}"/>
+        {block:AlbumArt}<meta name="twitter:image" content="{AlbumArtURL}"/>{/block:AlbumArt}
+      {/block:Audio}
+
+      {block:Video}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{PlaintextTitle}"/>
+        {block:Caption}<meta name="twitter:description" content="{PlaintextCaption}"/>{/block:Caption}
+      {/block:Video}
+
+      {block:Answer}
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{PlaintextQuestion}"/>
+        <meta name="twitter:description" content="{PlaintextAnswer}"/>
+        <meta name="twitter:image" content="{PortraitURL-64}"/>
+      {/block:Answer}
+
+    {/block:Posts}
+
+  {/block:PermalinkPage}
+  {/block:IfTwitterUsername}
+
   {block:IndexPage}
   <title>{Title}</title>
   {/block:IndexPage}
@@ -88,7 +162,7 @@
   </script>
 </head>
 <body>
-<!-- Song Player http://playlist.me --><script type="text/javascript" src="http://playlist.me/w/script.js" data-config="{'skin':'http://static.tumblr.com/ybdgrst/yihm85546/simples2_skin.css','volume':50,'autoplay':true,'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Zenophile','url':'https://dl.dropboxusercontent.com/u/43809284/Zenophile.mp3'},{'title':'The Clockmaker','url':'https://dl.dropboxusercontent.com/u/43809284/The%20Clockmaker.mp3'},{'title':'Ripened Pears','url':'https://dl.dropboxusercontent.com/u/43809284/Ripened%20Pears.mp3'},{'title':'Staying Alive','url':'https://dl.dropboxusercontent.com/u/43809284/Staying%20Alive.mp3'},{'title':'Breakdown','url':'https://dl.dropboxusercontent.com/u/43809284/Breakdown%20%28Original%20Mix%29.mp3'},{'title':'Russian Dubstep Song','url':'https://dl.dropboxusercontent.com/u/43809284/DJ%20Neoliner.mp3'}]}" ></script><noscript><a href="http://playlist.me/songs/">player playlist</a></noscript><!-- playlist.me script end -->
+<!-- Song Player http://playlist.me --><script type="text/javascript" src="http://playlist.me/w/script.js" data-config="{'skin':'http://static.tumblr.com/ybdgrst/yihm85546/simples2_skin.css','volume':50,'autoplay':true,'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Zenophile','url':'https://dl.dropboxusercontent.com/u/43809284/Zenophile.mp3'},{'title':'The Clockmaker','url':'https://dl.dropboxusercontent.com/u/43809284/The%20Clockmaker.mp3'},{'title':'Ripened Pears','url':'https://dl.dropboxusercontent.com/u/43809284/Ripened%20Pears.mp3'},{'title':'Staying Alive','url':'https://dl.dropboxusercontent.com/u/43809284/Staying%20Alive.mp3'},{'title':'Breakdown','url':'https://dl.dropboxusercontent.com/u/43809284/Breakdown%20%28Original%20Mix%29.mp3'},{'title':'Russian Dubstep Song','url':'https://dl.dropboxusercontent.com/u/43809284/DJ%20Neoliner.mp3'},{'title':'Stars Come Out','url':'http://www.youtube.com/watch?v=huqWsnXKCos'}]}" ></script><noscript><a href="http://playlist.me/songs/">player playlist</a></noscript><!-- playlist.me script end -->
 <header id="sidebar">
   <figure class="logo medium">
     <a href="/">{Title}</a>
@@ -296,6 +370,12 @@
     <h2>
       <a href="{Permalink}" class="no-link title">Answer</a>
     </h2>
+    <p></p>
+    <p>{Asker}</p>
+    <blockquote>
+      <p>{Question}</p>
+    </blockquote>
+    <p>{Answer}</p>
   {/block:Answer}
     {block:HasTags}
     <ul class="tags">
