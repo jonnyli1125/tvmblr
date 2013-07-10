@@ -9,6 +9,7 @@
   <meta name="if:RSS Feed" content="1" />
   <meta name="if:Archive Link" content="1" />
   <meta name="if:Show Ask Link" content="1" />
+  <meta name="if:Show Submit Link" content="1" />
   <meta name="text:Swiftype Search Key" content="" />
   <meta name="text:Twitter Username" content="" />
   <meta name="text:GitHub Username" content="" />
@@ -187,6 +188,11 @@
     <li class="link email"><a href="/ask">{AskLabel}</a></li>
     {/block:IfShowAskLink}
     {/block:AskEnabled}
+    {block:SubmissionsEnabled}
+    {block:IfShowSubmitLink}
+    <li class="link email"><a href="/submit">{SubmitLabel}</a></li>
+    {/block:IfShowSubmitLink}
+    {/block:SubmissionsEnabled}
     {block:IfRssFeed}
     <li class="link feed"><a href="{RSS}">feed</a></li>
     {/block:IfRssFeed}
