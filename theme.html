@@ -10,7 +10,6 @@
   <meta name="if:Archive Link" content="1" />
   <meta name="if:Show Ask Link" content="1" />
   <meta name="if:Show Submit Link" content="1" />
-  <meta name="text:Swiftype Search Key" content="" />
   <meta name="text:Twitter Username" content="" />
   <meta name="text:GitHub Username" content="" />
   <meta name="text:Nickname" content="" />
@@ -96,6 +95,9 @@
   {block:PermalinkPage}
   <title>{block:PostTitle}{PostTitle} - {/block:PostTitle}{Title}</title>
   {/block:PermalinkPage}
+  {block:SearchPage}
+  <title>{Title} - {SearchQuery} ({SearchResultCount} results)</title>
+  {/block:SearchPage}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {block:Description}
   <meta name="description" content="{MetaDescription}" />
@@ -146,8 +148,29 @@
     {
       border-left-color: {color:Theme Color};
     }
-    article p img.bleed { margin-left: 0px; min-width: 0px; max-width: none; }
+    img.bleed { margin-left: 0px; min-width: 0px; max-width: none; }
     ul.chat li { word-wrap: break-word; }
+    form#search {
+        float: right;
+        margin-right: 40px;
+        margin-top: -7px;
+    }
+    input.search-input {
+        border-radius: 15px;
+        -moz-border-radius: 15px;
+        -webkit-border-radius: 15px;
+        background-color: white;
+        border: 4px solid #F8F8F8;
+        font-family: 'proxima-nova','Helvetica','Avenir',sans-serif
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        outline: none;
+        height: 20px;
+        width: 200px;
+        padding: 4px 9px 4px 27px;
+        background: url(//swiftype-assets.a.ssl.fastly.net/assets/embed_mag-034de95a159bfc65ae00bd318e8138ed.png) no-repeat 7px 7px;
+    }
   </style>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script src="http://static.tumblr.com/rb82j8l/gCMmoy39n/theme.js"></script>
@@ -164,7 +187,7 @@
   </script>
 </head>
 <body>
-<!-- Song Player http://playlist.me --><script type="text/javascript" src="http://playlist.me/w/script.js" data-config="{'skin':'http://static.tumblr.com/ybdgrst/yihm85546/simples2_skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Zenophile','url':'https://dl.dropboxusercontent.com/u/43809284/Zenophile.mp3'},{'title':'The Clockmaker','url':'https://dl.dropboxusercontent.com/u/43809284/The%20Clockmaker.mp3'},{'title':'Ripened Pears','url':'https://dl.dropboxusercontent.com/u/43809284/Ripened%20Pears.mp3'},{'title':'Staying Alive','url':'https://dl.dropboxusercontent.com/u/43809284/Staying%20Alive.mp3'},{'title':'Breakdown','url':'https://dl.dropboxusercontent.com/u/43809284/Breakdown%20%28Original%20Mix%29.mp3'},{'title':'Russian Dubstep Song','url':'https://dl.dropboxusercontent.com/u/43809284/DJ%20Neoliner.mp3'},{'title':'Stars Come Out','url':'http://www.youtube.com/watch?v=huqWsnXKCos'}]}" ></script><noscript><a href="http://playlist.me/songs/">player playlist</a></noscript><!-- playlist.me script end -->
+<!-- Song Player http://playlist.me --<script type="text/javascript" src="http://playlist.me/w/script.js" data-config="{'skin':'http://static.tumblr.com/ybdgrst/yihm85546/simples2_skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Zenophile','url':'https://dl.dropboxusercontent.com/u/43809284/Zenophile.mp3'},{'title':'The Clockmaker','url':'https://dl.dropboxusercontent.com/u/43809284/The%20Clockmaker.mp3'},{'title':'Ripened Pears','url':'https://dl.dropboxusercontent.com/u/43809284/Ripened%20Pears.mp3'},{'title':'Staying Alive','url':'https://dl.dropboxusercontent.com/u/43809284/Staying%20Alive.mp3'},{'title':'Breakdown','url':'https://dl.dropboxusercontent.com/u/43809284/Breakdown%20%28Original%20Mix%29.mp3'},{'title':'Russian Dubstep Song','url':'https://dl.dropboxusercontent.com/u/43809284/DJ%20Neoliner.mp3'},{'title':'Stars Come Out','url':'http://www.youtube.com/watch?v=huqWsnXKCos'}]}" ></script><noscript><a href="http://playlist.me/songs/">player playlist</a></noscript><!-- playlist.me script end -->
 <header id="sidebar">
   <figure class="logo medium">
     <a href="/">{Title}</a>
@@ -212,54 +235,9 @@
 <section id="river" class="post_single">
 {/block:PermalinkPage}
   <header id="begin">
-    {block:IfSwiftypeSearchKey}
-    <form>
-      <input type="text" id="st-search-input" class="st-search-input" />
-    </form>
-    <div id="st-results-container"></div>
-    <script type="text/javascript">
-      var Swiftype = window.Swiftype || {};
-      (function() {
-        Swiftype.key = '{text:Swiftype Search Key}';
-        Swiftype.inputElement = '#st-search-input';
-        Swiftype.resultContainingElement = '#st-results-container';
-        Swiftype.attachElement = '#st-search-input';
-        Swiftype.renderStyle = "overlay";
-
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.async = true;
-        script.src = "//swiftype.com/embed.js";
-        var entry = document.getElementsByTagName('script')[0];
-        entry.parentNode.insertBefore(script, entry);
-      }());
-    </script>
-    <style type="text/css">
-    form {
-      float: right;
-      margin-right: 40px;
-      margin-top: -7px;
-    }
-    input#st-search-input {
-        background-color: white;
-        border: 4px solid #F8F8F8;
-        font-family: 'proxima-nova','Helvetica','Avenir',sans-serif
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-    }
-    div.swiftype {
-        font-family: 'proxima-nova','Helvetica','Avenir',sans-serif
-    }
-    div.swiftype div.st-result-listing div.st-search-summary h2, div.swiftype div.st-result-listing .st-results div.st-result .st-result-text h3 a {
-        font-size: 14px;
-    }
-    div.swiftype div.st-result-listing .st-results div.st-result .st-result-text .st-metadata .st-snippet {
-        font-size: 13px;
-    }
-    img.bleed { margin-left: 0px; min-width: 0px; }
-    </style>
-    {/block:IfSwiftypeSearchKey}
+  <form action="/search" method="get" id="search">
+    <input type="text" id="q" name="q" class="search-input" placeholder="search" value="{block:SearchPage}{SearchQuery}{/block:SearchPage}" />
+  </form>
     <time datetime=""></time>
     <script>
     var objToday = new Date();
@@ -271,10 +249,15 @@
       $("time").text(date);
     });
     </script>
-{block:Posts}
   </header>
-  
+  {block:SearchPage}
+  <article class="post" style="padding-top: 0px; padding-bottom: 0px; min-height: 0px;">
+    <h2>Search: {SearchQuery} - {SearchResultCount} results</h2>
+  </article>
+  {/block:SearchPage}
+{block:Posts}
   <article id="eid{PostID}" class="post">
+  
   {block:Text}
     {block:Title}
     <h2>
@@ -462,6 +445,14 @@ $(function() {
         </div>
   </nav>
   {/block:PermalinkPage}
+  {block:SearchPage}
+  <nav class="pagination">
+    <span class="page gap"></span>
+        <span class="prev">
+            <a href="/" class="back_to_blog" id="backbutton">&larr;&nbsp;&nbsp;&nbsp;Full blog</a>
+        </div>
+  </nav>
+  {/block:SearchPage}
 
   <section id="fin">
     <p class="legal"><a href="/">&copy; 2013 {Title}</a></p>
