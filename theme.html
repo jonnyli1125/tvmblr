@@ -115,7 +115,11 @@
   </script>
 </head>
 <body>
+<!--[if lt IE 8]>
+<script type="text/javascript">alert("You are using an outdated browser! This website may not load properly; please update to a modern browser (e.g. Chrome, Firefox, Opera).");</script>
+<![endif]-->
 <!-- Song Player http://playlist.me --<script type="text/javascript" src="http://playlist.me/w/script.js" data-config="{'skin':'http://static.tumblr.com/ybdgrst/yihm85546/simples2_skin.css','volume':50,'autoplay':false,'shuffle':false,'repeat':1,'placement':'bottom','showplaylist':false,'playlist':[{'title':'Zenophile','url':'https://dl.dropboxusercontent.com/u/43809284/Zenophile.mp3'},{'title':'The Clockmaker','url':'https://dl.dropboxusercontent.com/u/43809284/The%20Clockmaker.mp3'},{'title':'Ripened Pears','url':'https://dl.dropboxusercontent.com/u/43809284/Ripened%20Pears.mp3'},{'title':'Staying Alive','url':'https://dl.dropboxusercontent.com/u/43809284/Staying%20Alive.mp3'},{'title':'Breakdown','url':'https://dl.dropboxusercontent.com/u/43809284/Breakdown%20%28Original%20Mix%29.mp3'},{'title':'Russian Dubstep Song','url':'https://dl.dropboxusercontent.com/u/43809284/DJ%20Neoliner.mp3'},{'title':'Stars Come Out','url':'http://www.youtube.com/watch?v=huqWsnXKCos'}]}" ></script><noscript><a href="http://playlist.me/songs/">player playlist</a></noscript><!-- playlist.me script end -->
+<div style="position: fixed; top: 0;" data-jks="align"></div>
 <header id="sidebar">
   <figure class="logo medium">
     <a href="/">{Title}</a>
@@ -184,7 +188,7 @@
   </article>
   {/block:SearchPage}
 {block:Posts}
-  <article id="eid{PostID}" class="post">
+  <article id="eid{PostID}" class="post" data-jks="post">
   
   {block:Text}
     {block:Title}
@@ -331,10 +335,10 @@
     {block:PostNotes}
     {PostNotes}
     {/block:PostNotes}
+    <script type="text/javascript">
+    $("#kudo_eid{PostID} div.num").text($("#kudo_eid{PostID} div.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+    </script>
   </article>
-  <script type="text/javascript">
-  $("#kudo_eid{PostID} div.num").text($("#kudo_eid{PostID} div.num").text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-  </script>
 {/block:Posts}
 <script type="text/javascript">
 $(function() {
@@ -384,5 +388,6 @@ $(function() {
     <p class="legal"><a href="/">&copy; 2013 {Title}</a></p>
   </section>
 </section>
+<script src="http://jonny.li/themes/utils/jkscrolling/code" type="text/javascript"></script>
 </body>
 </html>
