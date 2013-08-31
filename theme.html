@@ -220,12 +220,7 @@
     <h2>
       <a href="{Permalink}" class="no-link title">Photoset</a>
     </h2>
-    {block:Photos}
-      <a href="{PhotoURL-HighRes}" target="_blank"><img src="{PhotoURL-500}" width="{PhotoWidth-500}" height="{PhotoHeight-500}" alt="{PhotoAlt}"/></a>
-      {block:Caption}
-      <p>{Caption}</p>
-      {/block:Caption}
-    {/block:Photos}
+    {Photoset-500}
     {block:Caption}
     <p>{Caption}</p>
     {/block:Caption}
