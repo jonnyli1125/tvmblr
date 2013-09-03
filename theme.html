@@ -391,9 +391,11 @@ $(window).keypress(function(e){
     var currentPageNumber = document.location.pathname.indexOf("/page/") != -1 ? parseInt(document.location.pathname.substring(6)) : 1;
     switch (e.keyCode) {
         case 110: //n
+        case 108: //l
             window.location = "/page/" + (currentPageNumber + 1);
             break;
         case 112: //p
+        case 104: //h
             if (currentPageNumber == "1") return;
             window.location = "/page/" + (currentPageNumber - 1);
             break;
