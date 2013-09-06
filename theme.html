@@ -189,7 +189,7 @@
   </article>
   {/block:SearchPage}
 {block:Posts}
-  <article id="eid{PostID}" class="post" data-jks="post">
+  <article id="eid{PostID}" class="post" data-jks="post" data-permalink="{Permalink}">
   
   {block:Text}
     {block:Title}
@@ -400,7 +400,7 @@ $(window).keypress(function(e){
             window.location = "/page/" + (currentPageNumber - 1);
             break;
         case 111: //o
-            window.open(current.childNodes[1].childNodes[1].href);
+            window.open(jkscrolling.current.dataset.permalink);
             break;
     }
 });
