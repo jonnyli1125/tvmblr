@@ -398,7 +398,7 @@ $(window).keypress(function(e){
             window.location = "/page/" + (currentPageNumber - 1);
             break;
         case 111: //o
-            window.open(jkscrolling.current.dataset.permalink);
+            window.open(jkscrolling.current.getAttribute("data-permalink")); // no datasets because i <4 internet explorer
             break;
     }
 });
